@@ -4,9 +4,7 @@ from pathlib import Path
 load_dotenv()
 
 source_path = os.getenv('SOURCE_PATH')
-print(source_path)
-isExist = os.path.exists(source_path)
-#print(isExist)
+dest_path = os.getenv('DEST_PATH')
 
 # get list of all files
 arrFile = os.listdir(source_path)
