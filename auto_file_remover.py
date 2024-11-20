@@ -1,6 +1,8 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
-path_to_scan = "" # folder that program will check
-# check location exists
-isExist = os.path.exists(path_to_scan)
+source_path = os.getenv('SOURCE_PATH')
+print(source_path)
+isExist = os.path.exists(source_path)
 print(isExist)
