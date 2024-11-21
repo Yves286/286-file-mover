@@ -11,4 +11,7 @@ arrFile = os.listdir(source_path)
 #print(arrFile)
 for i in arrFile:
     if (Path(i).suffix == ('.mp3')) or (Path(i).suffix == ('.wav')): # get desired file extensions
-        print(i)
+        src_path = os.path.join(source_path, i)
+        dst_path = os.path.join(dest_path, i)
+        os.rename(src_path, dst_path)
+        print(i + ' has been moved')
