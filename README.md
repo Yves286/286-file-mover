@@ -6,11 +6,11 @@ A flexible script that runs in the background, reads incoming files and automati
 
 2 versions have been been planned for this project:
 
-**Static Version (Implemented)**
+### Static Version (Implemented)
 
 Provided in file ```auto_file_remover_static.py``` is a one-time program that reads the current files in the directory and move them to the destination. When done it will immediately terminate.
 
-**Dynamic Version (Planned)**
+### Dynamic Version (Planned)
 
 This is a .pyw file that runs on start-up and continues to run in the background of the system. It continuously scans for incoming files and immediately moves them. It does not terminate unless requested by the user.
 
