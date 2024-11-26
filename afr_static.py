@@ -10,6 +10,7 @@ dest_path = os.getenv('DEST_PATH')
 intType = "a"
 intSource = "a"
 numSources = 2
+finalSourceDir = False
 arrFileTypes = [['.png','.jpeg','.jpg','.bmp'],['.mp3','.wav','.flac','.ogg'],['.mp4','.mov','.aiv','.flv']]
 
 # get list of all files
@@ -39,14 +40,32 @@ def source_check(integer):
         print("Please change the source address in its respective .env file.")
         sys.exit(0)
 
+def build_target_path():
+    tempDirList = [name for name in os.listdir(source_path)
+            if os.path.isdir(os.path.join(source_path, name))] # get current dirs in dir
+    tempDirList = enumerate(tempDirList)
+    # loop and print them all
+    max_choices = 0
+    for i in tempDirList:
+        print(str(i[0] + 1) + ". " + str(i[1]))
+        max_choices = i[0] + 1
+    # append a "finished path" option that makes finalSourceDir = true
+    print("**" + str(max_choices+1) + ". FINALISE DESTINATION**")
+    print("")
+
 if __name__ == "__main__":
     # path check
-    print("Welcome, this is your current source path: " + str(source_path))
-    while intSource.isnumeric() == False or int(intSource) <= 0 or int(intSource) > 2:
+    print("Welcome!")
+    # loop until source directory granted
+    while finalSourceDir == False:
+        build_target_path()
+        input()
+        #
+    """while intSource.isnumeric() == False or int(intSource) <= 0 or int(intSource) > 2:
         print("Are you happy with this selection?")
         print("1. Yes")
         print("2. No")
-        intSource = input("")
+        intSource = input("")"""
     # get file type to move
     while intType.isnumeric() == False or int(intType) <= 0 or int(intType) > 3:
         # get file type to move
