@@ -51,7 +51,15 @@ def build_target_path():
         max_choices = i[0] + 1
     # append a "finished path" option that makes finalSourceDir = true
     print("**" + str(max_choices+1) + ". FINALISE DESTINATION**")
-    print("")
+    int_add = "a"
+    while int_add.isnumeric() == False or int(int_add) <=0 or int(int_add) > max_choices + 1:
+        int_add = input("Enter Number: ")
+    if int_add == max_choices + 1:
+        finalSourceDir = True
+        print("FinalSourceDir = " + str(finalSourceDir))
+    else:
+        source_path += "\\" + str(tempDirList[int_add][1])
+        print(source_path)
 
 if __name__ == "__main__":
     # path check
