@@ -8,6 +8,8 @@ load_dotenv()
 source_path = os.getenv('SOURCE_PATH')
 dest_path = os.getenv('DEST_PATH')
 intType = "a"
+intSource = "a"
+numSources = 2
 arrFileTypes = [['.png','.jpeg','.jpg','.bmp'],['.mp3','.wav','.flac','.ogg'],['.mp4','.mov','.aiv','.flv']]
 
 # get list of all files
@@ -30,8 +32,24 @@ def file_move(intFileType): # moves files based on extension
     print("All files moved. Program ending.")
     sys.exit(0)
 
+def source_check(integer):
+    if integer == 1:
+        pass
+    else:
+        print("Please change the source address in its respective .env file.")
+        sys.exit(0)
+
 if __name__ == "__main__":
+    # path check
+    print("Welcome, this is your current source path: " + str(source_path))
+    while intSource.isnumeric() == False or int(intSource) <= 0 or int(intSource) > 2:
+        print("Are you happy with this selection?")
+        print("1. Yes")
+        print("2. No")
+        intSource = input("")
+    # get file type to move
     while intType.isnumeric() == False:
+        # get file type to move
         print("Please choose your desired type of file to move.")
         print("1. Common image types")
         print("2. Common audio types")
