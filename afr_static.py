@@ -48,7 +48,7 @@ if __name__ == "__main__":
         print("2. No")
         intSource = input("")
     # get file type to move
-    while intType.isnumeric() == False:
+    while intType.isnumeric() == False or int(intType) <= 0 or int(intType) > 3:
         # get file type to move
         print("Please choose your desired type of file to move.")
         print("1. Common image types")
