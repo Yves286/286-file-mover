@@ -40,13 +40,12 @@ def source_check(integer):
         print("Please change the source address in its respective .env file.")
         sys.exit(0)
 
-def build_target_path():
-    tempDirList = [name for name in os.listdir(source_path)
-            if os.path.isdir(os.path.join(source_path, name))] # get current dirs in dir
-    tempDirList = enumerate(tempDirList)
+def build_target_path(source):
+    tempDirList = [name for name in os.listdir(source)
+            if os.path.isdir(os.path.join(source, name))] # get current dirs in dir
     # loop and print them all
     max_choices = 0
-    for i in tempDirList:
+    for i in enumerate(tempDirList):
         print(str(i[0] + 1) + ". " + str(i[1]))
         max_choices = i[0] + 1
     # append a "finished path" option that makes finalSourceDir = true
@@ -55,18 +54,20 @@ def build_target_path():
     while int_add.isnumeric() == False or int(int_add) <=0 or int(int_add) > max_choices + 1:
         int_add = input("Enter Number: ")
     if int_add == max_choices + 1:
+        print("Final choice taken")
         finalSourceDir = True
         print("FinalSourceDir = " + str(finalSourceDir))
     else:
-        source_path += "\\" + str(tempDirList[int_add][1])
-        print(source_path)
+        print("Append to path")
+        source = source + "\\" + str(tempDirList[int(int_add)-1]) # MINUS 1 FOR 0 BASED COUNTING
+        print(source)
 
 if __name__ == "__main__":
     # path check
     print("Welcome!")
     # loop until source directory granted
     while finalSourceDir == False:
-        build_target_path()
+        build_target_path(source_path)
         input()
         #
     """while intSource.isnumeric() == False or int(intSource) <= 0 or int(intSource) > 2:
