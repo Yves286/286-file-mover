@@ -13,16 +13,16 @@ flgFinalSourcePath = False
 flgFinalDestPath = False
 arrFileTypes = [['.png','.jpeg','.jpg','.bmp'],['.mp3','.wav','.flac','.ogg'],['.mp4','.mov','.aiv','.flv']]
 
-# get list of all files
-arrFile = os.listdir(source_path)
-
 ## Quit program if no files in location
-def file_list_check():
-    if (len(arrFile) <= 0):
+def file_list_check(array_of_files):
+    if (len(array_of_files) <= 0):
         print("No files in source location. Program ending.")
         sys.exit(0)
+
 ## Move files based on extension
 def file_move(intFileType, source, destination):
+    arrFile = os.listdir(source_path)
+    file_list_check(arrFile)
     for i in arrFile:
         for j in arrFileTypes[intFileType]: # loop through arrFileTypes
             if (Path(i).suffix == (j)):
@@ -35,7 +35,6 @@ def file_move(intFileType, source, destination):
     sys.exit(0)
 
 def build_target_path(source, flagTrigger):
-    print(str(source))
     tempDirList = [name for name in os.listdir(source)
             if os.path.isdir(os.path.join(source, name))] # get current dirs in dir
     # loop and print them all
@@ -46,34 +45,32 @@ def build_target_path(source, flagTrigger):
     # append a "finished path" option that makes finalSourceDir = true
     print("**" + str(max_choices+1) + ". FINALISE DESTINATION**")
     int_add = "a"
-    print(max_choices + 1)
     while int_add.isnumeric() == False or int(int_add) <=0 or int(int_add) > int(max_choices + 1):
         int_add = input("Enter Number: ")
-    print(int_add == (max_choices + 1))
     if int(int_add) == int(max_choices + 1):
-        print("Final choice taken")
         flagTrigger = True
-        print("FinalFlag = " + str(flagTrigger))
         return source, flagTrigger
     else:
-        print("Append to path")
         source = source + "\\" + str(tempDirList[int(int_add)-1]) # MINUS 1 FOR 0 BASED COUNTING
         return source, flagTrigger
 
 if __name__ == "__main__":
     # path check
     print("Welcome!")
+
     ## BUILD SOURCE ##
     print("First we will build your source path")
     # loop until source directory granted
     while flgFinalSourcePath == False:
         source_path, flgFinalSourcePath = build_target_path(source_path, flgFinalSourcePath)
     print("Your final source path is " + str(source_path))
+
     ## BUILD DESTINATION ##
     print("Secondly we will build your destination path")
     while flgFinalDestPath == False:
         dest_path, flgFinalDestPath = build_target_path(dest_path, flgFinalDestPath)
     print("Your final destination path is " + str(dest_path))
+
     ## GET FILE TYPE ##
     while intType.isnumeric() == False or int(intType) <= 0 or int(intType) > 3:
         # get file type to move
@@ -84,5 +81,6 @@ if __name__ == "__main__":
         intType = input("Enter Number: ")
     intType = int(intType)
     intType -= 1 #-1 to match arrFileTypes array
+    
     ## MOVE FILES ##
     file_move(intType, source_path, dest_path)
