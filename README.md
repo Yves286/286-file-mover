@@ -1,4 +1,4 @@
-# file_mover
+# File Mover
 
 > python script moves file based on attributes
 
