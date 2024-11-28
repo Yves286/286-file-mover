@@ -20,7 +20,7 @@ SOURCE_PATH is the initial directory path that the program will use. It can scan
 
 DEST_PATH is the target directory that files will be moved to. It can scan and list directories within to further specify the destination path.
 
-Below is an example .env file intended to move audio files.
+Below is an example .env file intended to move audio files. It should be in the same folder as ```file_mover.py```
 
 ```
 SOURCE_PATH = 'C:\Users\{User}\Downloads'

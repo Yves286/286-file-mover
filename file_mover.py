@@ -16,7 +16,7 @@ arrFileTypes = [['.png','.jpeg','.jpg','.bmp'],['.mp3','.wav','.flac','.ogg'],['
 ## Quit program if no files in location
 def file_list_check(array_of_files):
     if (len(array_of_files) <= 0):
-        print("No files in source location. Program ending.")
+        print("No files in source location to check. Program ending.")
         sys.exit(0)
 
 ## Move files based on extension
@@ -81,6 +81,6 @@ if __name__ == "__main__":
         intType = input("Enter Number: ")
     intType = int(intType)
     intType -= 1 #-1 to match arrFileTypes array
-    
+
     ## MOVE FILES ##
     file_move(intType, source_path, dest_path)
